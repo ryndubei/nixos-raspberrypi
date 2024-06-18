@@ -5,12 +5,21 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2daa10c2-8624-45b7-853b-aa8690e7b736";
+    {
+      device = "/dev/disk/by-uuid/2daa10c2-8624-45b7-853b-aa8690e7b736";
       fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    {
+      device = "/dev/disk/by-uuid/19A5-76BB";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
