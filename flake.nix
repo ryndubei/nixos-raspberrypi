@@ -1,0 +1,33 @@
+{
+  description = "Raspberry Pi system configuration";
+
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = { nixpkgs, nixos-hardware, ... }@inputs:
+    let
+      lib = nixpkgs.lib;
+      raspi-4 = nixos-hardware.nixosModules.raspberry-pi-4;
+    in
+    {
+      nixosConfigurations =
+        {
+          raspberrypi = lib.nixosSystem
+            {
+              system = "aarch64-linux";
+              specialArgs = { inherit inputs; };
+              modules =
+                [
+                  ./configuration.nix
+                  ./hardware-configuration.nix
+                  raspi-4
+                ];
+            };
+        };
+    };
+}
