@@ -7,13 +7,13 @@
 {
   # See https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
 
-  hardware = {
-    raspberry-pi."4".apply-overlays-dtmerge.enable = true;
-    deviceTree = {
-      enable = true;
-      filter = "*rpi-4-*.dtb";
-    };
-  };
+  #hardware = {
+  #  raspberry-pi."4".apply-overlays-dtmerge.enable = true;
+  #  deviceTree = {
+  #    enable = true;
+  #    filter = "*rpi-4-*.dtb";
+  #  };
+  #};
 
   networking.hostName = "raspberrypi"; # Define your hostname.
   # Pick only one of the below networking options.
