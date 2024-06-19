@@ -26,7 +26,6 @@
               modules =
                 [
                   "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-                  ({ ... }: { nixpkgs.hostPlatform.system = "aarch64-linux"; })
                   ./configuration.nix
                   ./encrypted/wifi.nix
                   raspi-4
