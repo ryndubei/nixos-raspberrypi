@@ -33,7 +33,10 @@
   i18n.defaultLocale = "en_GB.UTF-8";
 
   console.enable = false;
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+
+  users.mutableUsers = false;
+  security.sudo.wheelNeedsPassword = false;
+
   users.users.raspbius = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
