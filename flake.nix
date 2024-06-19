@@ -26,16 +26,8 @@
               modules =
                 [
                   "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-                  ({ ... }: {
-                    # Set up for cross-compilation from x86_64 to aarch64
-                    nixpkgs.buildPlatform.system = "x86-64-linux";
-                    nixpkgs.hostPlatform.system = "aarch64-linux";
-
-                    # Compression is on by default
-                    # build.sdImage.compressImage = false;
-                  })
+                  ({ ... }: { nixpkgs.hostPlatform.system = "aarch64-linux"; })
                   ./configuration.nix
-                  ./hardware-configuration.nix
                   ./encrypted/wifi.nix
                   raspi-4
                 ];
