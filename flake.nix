@@ -1,4 +1,7 @@
 {
+  # https://myme.no/posts/2022-12-01-nixos-on-raspberrypi.html#registering-qemu-emulation-as-a-binfmt-wrapper
+  # https://mtlynch.io/nixos-pi4/
+
   description = "Raspberry Pi system configuration";
 
   inputs = {
