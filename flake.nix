@@ -8,7 +8,6 @@
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
