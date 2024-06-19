@@ -55,6 +55,7 @@
   environment.systemPackages = with pkgs; [
     libraspberrypi
     raspberrypi-eeprom
+    git-crypt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
