@@ -28,7 +28,7 @@
                 [
                   ./configuration.nix
                   ./hardware-configuration.nix
-                  ./wifi.nix
+                  ./encrypted/wifi.nix
                   raspi-4
                 ];
             };
