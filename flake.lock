@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718530513,
+        "narHash": "sha256-BmO8d0r+BVlwWtMLQEYnwmngqdXIuyFzMwvmTcLMee8=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "a1fddf0967c33754271761d91a3d921772b30d0e",
+        "type": "github"
+      },
+      "original": {
+        "id": "home-manager",
+        "ref": "release-24.05",
+        "type": "indirect"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1718806950,
@@ -12,6 +32,29 @@
       "original": {
         "owner": "NixOS",
         "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
+    "nixos-user": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718899041,
+        "narHash": "sha256-PTNbXpBcvCXuYVYEMaBUoN52FxHRsPviH6/Eit4kbro=",
+        "owner": "ryndubei",
+        "repo": "nixos-user",
+        "rev": "260ffef85183d0fa86ea3d6207f2c2107250aa81",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryndubei",
+        "repo": "nixos-user",
         "type": "github"
       }
     },
@@ -32,7 +75,9 @@
     },
     "root": {
       "inputs": {
+        "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
+        "nixos-user": "nixos-user",
         "nixpkgs": "nixpkgs"
       }
     }
