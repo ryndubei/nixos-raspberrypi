@@ -49,7 +49,12 @@
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7VuKLTmExfro8brkb2EiZ4Ce+RWRILcZ24K4n+tfmOWuNFT9j07HNoTDXocMKYp4ycUxdAmHH1wtte8hPcovjPoUJQxDvNPGUWXgiFt7us6ngyNaOp4dRX5ViW4diwvbd5djhK2b5X05tWoLw2Z45mB81VxiM4yI0vSAIr4u/BDnf2SlcPJBM1sro94QDKjKL/zIiaHFPbgeBcWkL5Lm/tEmE5JsfkKBoUPJoEmDQxG5gtqi2p8d23SzPV53dqbTK6sNnpqrhmmxpuZ26gqqXa/LW3mjRE4Q/RD/BlSnVUQkAzp9fQvuNgIswclevUhGlgeDOA+dVF+XR98VPJWR2ylx0U7g3FUBnBIyM8/0BSu/XdVzFVLobtv2qZsWVTAH/KwD4K7Ktmr9HnxUeCbfCxAmz45PWawrAdlIHPmARuy/hhIi0c53FXrjWDW2fE99usMBSOT6ADnLGa7VlVSISDL3lL2ftQFu0TLAVkmqoFvNI1YRkYAi3ooFE5dNi3E= vasilysterekhov@nixos"
     ];
   };
-  home-manager.users.raspbius = import inputs.nixos-user.nixosModules.home;
+  home-manager.users.raspbius = { ... }: {
+    imports = [ inputs.nixos-user.nixosModules.home ];
+
+    home.username = "raspbius";
+    home.homeDirectory = "/home/raspbius";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
