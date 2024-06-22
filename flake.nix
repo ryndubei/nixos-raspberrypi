@@ -29,13 +29,24 @@
       lib = nixpkgs.lib;
       raspi-4 = nixos-hardware.nixosModules.raspberry-pi-4;
       hm = home-manager.nixosModules.home-manager;
+      system = "aarch64-linux";
+
+      pkgs = import nixpkgs { inherit system; };
+      # Use nixpkgs binary cache for deploy-rs
+      deployPkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          deploy-rs.overlay
+          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+        ];
+      };
     in
     {
       nixosConfigurations =
         {
           raspberrypi = lib.nixosSystem
             {
-              system = "aarch64-linux";
+              inherit system;
               specialArgs = { inherit inputs; };
               modules =
                 [
@@ -56,9 +67,7 @@
           profiles.system = {
             sshUser = "raspbius";
             user = "root";
-            path =
-              deploy-rs.lib.aarch64-linux.activate.nixos
-                self.nixosConfigurations.rpi;
+            path = deployPkgs.lib.activate.nixos self.nixosConfigurations.rpi;
           };
         };
     };
