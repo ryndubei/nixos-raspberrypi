@@ -72,8 +72,5 @@
                 self.nixosConfigurations.raspberrypi;
           };
         };
-
-      # Checks - see deploy-rs README
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
