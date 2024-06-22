@@ -67,7 +67,9 @@
           profiles.raspbius = {
             sshUser = "raspbius";
             user = "root";
-            path = deployPkgs.lib.activate.nixos self.nixosConfigurations.rpi;
+            path =
+              deployPkgs.deploy-rs.lib.activate.nixos
+                self.nixosConfigurations.raspberrypi;
           };
         };
 
