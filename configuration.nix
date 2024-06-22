@@ -54,6 +54,9 @@
 
     home.username = "raspbius";
     home.homeDirectory = "/home/raspbius";
+
+    programs.git.userName = "ryndubei";
+    programs.git.userEmail = "114586905+ryndubei@users.noreply.github.com";
   };
 
   # List packages installed in system profile. To search, run:
