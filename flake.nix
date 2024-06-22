@@ -64,7 +64,7 @@
       deploy.nodes.raspberrypi =
         {
           hostname = "raspberrypi"; # via ssh alias
-          profiles.system = {
+          profiles.raspbius = {
             sshUser = "raspbius";
             user = "root";
             path = deployPkgs.lib.activate.nixos self.nixosConfigurations.rpi;
