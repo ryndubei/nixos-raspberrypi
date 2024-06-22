@@ -70,5 +70,8 @@
             path = deployPkgs.lib.activate.nixos self.nixosConfigurations.rpi;
           };
         };
+
+      # Checks - see deploy-rs README
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
