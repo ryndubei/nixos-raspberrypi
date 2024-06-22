@@ -64,7 +64,7 @@
       deploy.nodes.raspberrypi =
         {
           hostname = "raspberrypi"; # via ssh alias
-          profiles.raspbius = {
+          profiles.system = {
             sshUser = "raspbius";
             user = "root";
             path =
