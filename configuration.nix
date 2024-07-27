@@ -89,6 +89,24 @@
 
   programs.git.enable = true;
 
+  # Enable a hostapd access point solely to transmit a country code
+  services.hostapd.enable = true;
+  services.hostapd.radios.wlan0 = {
+    countryCode = "GB";
+    band = "2g";
+    wifi4.capabilities = [
+      "HT40+"
+      "SMPS-STATIC"
+      "DSSS_CCK-40"
+    ];
+    networks.wlan0 = {
+      ssid = "Raspberry Pi";
+      authentication.saePasswords = [{ password = "12345678"; }];
+      # deny all connections (no ACL file)
+      macAcl = "deny";
+    };
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
