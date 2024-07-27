@@ -89,22 +89,6 @@
 
   programs.git.enable = true;
 
-  # Automatic upgrades
-  system.autoUpgrade = {
-    enable = true;
-    flake = inputs.self.outPath;
-    flags = [
-      "--recreate-lock-file"
-      "-L" # print build logs
-    ];
-    dates = "07:30";
-    allowReboot = true;
-    rebootWindow = {
-      lower = "07:30";
-      upper = "09:00";
-    };
-  };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
