@@ -45,17 +45,33 @@
         ]
       },
       "locked": {
-        "lastModified": 1718530513,
-        "narHash": "sha256-BmO8d0r+BVlwWtMLQEYnwmngqdXIuyFzMwvmTcLMee8=",
+        "lastModified": 1720042825,
+        "narHash": "sha256-A0vrUB6x82/jvf17qPCpxaM+ulJnD8YZwH9Ci0BsAzE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a1fddf0967c33754271761d91a3d921772b30d0e",
+        "rev": "e1391fb22e18a36f57e6999c7a9f966dc80ac073",
         "type": "github"
       },
       "original": {
         "id": "home-manager",
         "ref": "release-24.05",
         "type": "indirect"
+      }
+    },
+    "nix-flatpak": {
+      "locked": {
+        "lastModified": 1711997201,
+        "narHash": "sha256-J71xzQlVYsjagA4AsVwRazhBh2rZrPpKvxTgs6UzL7c=",
+        "owner": "gmodena",
+        "repo": "nix-flatpak",
+        "rev": "b76fa31346db7fc958a9898f3c594696ca71c4fd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gmodena",
+        "ref": "v0.4.1",
+        "repo": "nix-flatpak",
+        "type": "github"
       }
     },
     "nixos-hardware": {
@@ -78,16 +94,21 @@
         "home-manager": [
           "home-manager"
         ],
+        "nix-flatpak": "nix-flatpak",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "smokeapi-zip": "smokeapi-zip",
+        "spotify-adblock-source": "spotify-adblock-source",
+        "steamappidlist": "steamappidlist",
+        "stellarkey-source": "stellarkey-source"
       },
       "locked": {
-        "lastModified": 1719090447,
-        "narHash": "sha256-7H9LrFeSv64UTf6/kO956RYSxSOY3vuIwgFStfCibXs=",
+        "lastModified": 1722060672,
+        "narHash": "sha256-+FvnvmX1rL2rXpayGrHcax5LfSqoivfqRxrFDLQFk4U=",
         "owner": "ryndubei",
         "repo": "nixos-user",
-        "rev": "387a4419a3693846c042e8813277a5023c6ca511",
+        "rev": "386dd1d37ecbfab5be15c6b77a702f1ae6dcaab9",
         "type": "github"
       },
       "original": {
@@ -98,11 +119,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1718835956,
-        "narHash": "sha256-wM9v2yIxClRYsGHut5vHICZTK7xdrUGfrLkXvSuv6s4=",
+        "lastModified": 1721949857,
+        "narHash": "sha256-DID446r8KsmJhbCzx4el8d9SnPiE8qa6+eEQOJ40vR0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dd457de7e08c6d06789b1f5b88fc9327f4d96309",
+        "rev": "a1cc729dcbc31d9b0d11d86dc7436163548a9665",
         "type": "github"
       },
       "original": {
@@ -118,6 +139,68 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-user": "nixos-user",
         "nixpkgs": "nixpkgs"
+      }
+    },
+    "smokeapi-zip": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-cVWZUa+9e3fFFHCrKpjTEYQmheSDxFshWcXeoRl1V38=",
+        "type": "file",
+        "url": "https://github.com/acidicoala/SmokeAPI/releases/download/v2.0.5/SmokeAPI-v2.0.5.zip"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/acidicoala/SmokeAPI/releases/download/v2.0.5/SmokeAPI-v2.0.5.zip"
+      }
+    },
+    "spotify-adblock-source": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689983571,
+        "narHash": "sha256-UzpHAHpQx2MlmBNKm2turjeVmgp5zXKWm3nZbEo0mYE=",
+        "owner": "abba23",
+        "repo": "spotify-adblock",
+        "rev": "5a3281dee9f889afdeea7263558e7a715dcf5aab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "abba23",
+        "repo": "spotify-adblock",
+        "type": "github"
+      }
+    },
+    "steamappidlist": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719882896,
+        "narHash": "sha256-du0NFPCEr+Z99p3bE12y6GUs0GoEqgwUvD6Up7qQ91M=",
+        "owner": "jsnli",
+        "repo": "SteamAppIDList",
+        "rev": "5acd8f788b2b73efb3ee8b74994702bc4c2b1b99",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jsnli",
+        "repo": "SteamAppIDList",
+        "type": "github"
+      }
+    },
+    "stellarkey-source": {
+      "flake": false,
+      "locked": {
+        "host": "0xacab.org",
+        "lastModified": 1668967692,
+        "narHash": "sha256-NLSRi/M16bLGA2bs1HANUHOR5JnrGCMudWQBTAVJGpM=",
+        "owner": "stellarkey",
+        "repo": "stellarkey",
+        "rev": "717fa2d53db3e7e0019dfad19748ceb7137699b0",
+        "type": "gitlab"
+      },
+      "original": {
+        "host": "0xacab.org",
+        "owner": "stellarkey",
+        "repo": "stellarkey",
+        "type": "gitlab"
       }
     },
     "systems": {
