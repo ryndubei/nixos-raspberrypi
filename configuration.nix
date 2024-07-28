@@ -101,8 +101,7 @@
     ];
     networks.wlan0 = {
       ssid = "Raspberry Pi";
-      authentication.wpaPassword = "12345678";
-      authentication.mode = "wpa2-sha256";
+      authentication.mode = "none";
       macAcl = "allow";
       macAllow = [ "f4:7b:09:cd:91:19" ];
       apIsolate = true;
