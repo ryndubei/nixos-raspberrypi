@@ -101,9 +101,11 @@
     ];
     networks.wlan0 = {
       ssid = "Raspberry Pi";
-      authentication.saePasswords = [{ password = "12345678"; }];
-      # deny all connections (no ACL file)
-      macAcl = "deny";
+      authentication.wpaPassword = "12345678";
+      authentication.mode = "wpa2-sha256";
+      macAcl = "allow";
+      macAllow = [ "f4:7b:09:cd:91:19" ];
+      apIsolate = true;
     };
   };
 
