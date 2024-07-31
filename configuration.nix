@@ -87,6 +87,11 @@
     };
   };
 
+  # Enable Tailscale LAN-over-wireguard
+  services.tailscale.enable = true;
+  # Opt out of sending client logs to Tailscale
+  services.tailscale.extraDaemonFlags = [ "--no-logs-no-support" ];
+
   programs.git.enable = true;
 
   # Enable a hostapd access point solely to transmit a country code
