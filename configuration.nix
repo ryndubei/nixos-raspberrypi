@@ -153,6 +153,8 @@ in
   nix.settings.trusted-public-keys = [
     # Desktop builder key
     "nixos-desktop:9+ZeV3IhjkppmYbFJPra5HG08ZmknrHIT/Fllz1h6SE="
+    # Laptop builder key
+    "nixos-laptop:rjk/8nZmiNg5Em+xnX/4emdDGVlpF+B/BciEEPkVxSM="
   ];
 }
 
