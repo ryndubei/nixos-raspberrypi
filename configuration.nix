@@ -55,6 +55,7 @@ in
       DESKTOP_SSH_PUBKEY
       ANDROID_SSH_PUBKEY
     ];
+    linger = true;
   };
   home-manager.users.raspbius = { ... }: {
     imports = [ inputs.nixos-user.nixosModules.home ];
