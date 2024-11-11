@@ -1,3 +1,5 @@
 nixos-desktop-key
 nixos-laptop-key
+nixos-desktop-key.secret
+nixos-laptop-key.secret
 .envrc
