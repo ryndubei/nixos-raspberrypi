@@ -52,6 +52,7 @@
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix
+            ./encrypted/wifi.nix
             raspi-4
             hm
           ];
