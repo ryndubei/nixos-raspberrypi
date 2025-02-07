@@ -11,8 +11,7 @@ let
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7VuKLTmExfro8brkb2EiZ4Ce+RWRILcZ24K4n+tfmOWuNFT9j07HNoTDXocMKYp4ycUxdAmHH1wtte8hPcovjPoUJQxDvNPGUWXgiFt7us6ngyNaOp4dRX5ViW4diwvbd5djhK2b5X05tWoLw2Z45mB81VxiM4yI0vSAIr4u/BDnf2SlcPJBM1sro94QDKjKL/zIiaHFPbgeBcWkL5Lm/tEmE5JsfkKBoUPJoEmDQxG5gtqi2p8d23SzPV53dqbTK6sNnpqrhmmxpuZ26gqqXa/LW3mjRE4Q/RD/BlSnVUQkAzp9fQvuNgIswclevUhGlgeDOA+dVF+XR98VPJWR2ylx0U7g3FUBnBIyM8/0BSu/XdVzFVLobtv2qZsWVTAH/KwD4K7Ktmr9HnxUeCbfCxAmz45PWawrAdlIHPmARuy/hhIi0c53FXrjWDW2fE99usMBSOT6ADnLGa7VlVSISDL3lL2ftQFu0TLAVkmqoFvNI1YRkYAi3ooFE5dNi3E= vasilysterekhov@nixos-desktop";
   ANDROID_SSH_PUBKEY =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXOhbRu8rmIxXdDpXX4miEKJJ4kHM15gRk6FuVTGOXy u0_a180@localhost";
-in
-{
+in {
   # See https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
 
   #hardware = {
@@ -50,11 +49,8 @@ in
   users.users.raspbius = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    openssh.authorizedKeys.keys = [
-      LAPTOP_SSH_PUBKEY
-      DESKTOP_SSH_PUBKEY
-      ANDROID_SSH_PUBKEY
-    ];
+    openssh.authorizedKeys.keys =
+      [ LAPTOP_SSH_PUBKEY DESKTOP_SSH_PUBKEY ANDROID_SSH_PUBKEY ];
     linger = true;
   };
   home-manager.users.raspbius = { ... }: {

@@ -6,9 +6,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
-    };
+    nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-user = {
       url = "github:ryndubei/nixos-user";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +22,8 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, deploy-rs, ... }@inputs:
+  outputs =
+    { self, nixpkgs, nixos-hardware, home-manager, deploy-rs, ... }@inputs:
     let
       lib = nixpkgs.lib;
       raspi-4 = nixos-hardware.nixosModules.raspberry-pi-4;
@@ -37,38 +36,37 @@
         inherit system;
         overlays = [
           deploy-rs.overlay
-          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+          (self: super: {
+            deploy-rs = {
+              inherit (pkgs) deploy-rs;
+              lib = super.deploy-rs.lib;
+            };
+          })
         ];
       };
-    in
-    {
-      nixosConfigurations =
-        {
-          raspberrypi = lib.nixosSystem
-            {
-              inherit system;
-              specialArgs = { inherit inputs; };
-              modules =
-                [
-                  "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-                  ./configuration.nix
-                  raspi-4
-                  hm
-                ];
-            };
+    in {
+      nixosConfigurations = {
+        raspberrypi = lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            ./configuration.nix
+            raspi-4
+            hm
+          ];
         };
+      };
 
       # deploy-rs node configuration
-      deploy.nodes.raspberrypi =
-        {
-          hostname = "raspberrypi"; # via ssh alias
-          profiles.system = {
-            sshUser = "raspbius";
-            user = "root";
-            path =
-              deployPkgs.deploy-rs.lib.activate.nixos
-                self.nixosConfigurations.raspberrypi;
-          };
+      deploy.nodes.raspberrypi = {
+        hostname = "raspberrypi"; # via ssh alias
+        profiles.system = {
+          sshUser = "raspbius";
+          user = "root";
+          path = deployPkgs.deploy-rs.lib.activate.nixos
+            self.nixosConfigurations.raspberrypi;
         };
+      };
     };
 }
