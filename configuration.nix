@@ -24,8 +24,6 @@ in {
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "raspberrypi"; # Define your hostname.
-
   # Fix missing modules
   # https://github.com/NixOS/nixpkgs/issues/154163
   nixpkgs.overlays = [

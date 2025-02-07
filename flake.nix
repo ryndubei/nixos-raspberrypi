@@ -46,6 +46,17 @@
       };
     in {
       nixosConfigurations = {
+        pi-zero = lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            ./configuration.nix
+            ./encrypted/wifi.nix
+            hm
+            { networking.hostName = "zero"; }
+          ];
+        };
         raspberrypi = lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -55,6 +66,7 @@
             ./encrypted/wifi.nix
             raspi-4
             hm
+            { networking.hostName = "raspberrypi"; }
           ];
         };
       };
@@ -67,6 +79,15 @@
           user = "root";
           path = deployPkgs.deploy-rs.lib.activate.nixos
             self.nixosConfigurations.raspberrypi;
+        };
+      };
+      deploy.nodes.pi-zero = {
+        hostname = "zero";
+        profiles.system = {
+          sshUser = "raspbius";
+          user = "root";
+          path = deployPkgs.deploy-rs.lib.activate.nixos
+            self.nixosConfigurations.pi-zero;
         };
       };
     };
