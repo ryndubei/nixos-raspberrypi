@@ -5,7 +5,7 @@
   description = "Raspberry Pi system configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
     nixos-hardware = { url = "github:NixOS/nixos-hardware"; };
     nixos-user = {
       url = "github:ryndubei/nixos-user";
@@ -13,7 +13,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     home-manager = {
-      url = "home-manager/release-24.05";
+      url = "home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs = {
