@@ -27,6 +27,7 @@
     let
       lib = nixpkgs.lib;
       raspi-4 = nixos-hardware.nixosModules.raspberry-pi-4;
+      raspi-3 = nixos-hardware.nixosModules.raspberry-pi-3;
       hm = home-manager.nixosModules.home-manager;
       system = "aarch64-linux";
 
@@ -46,6 +47,18 @@
       };
     in {
       nixosConfigurations = {
+        sdp = lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            ./configuration.nix
+            ./encrypted/wifi_sdp.nix
+            raspi-3
+            hm
+            { networking.hostName = "sdp-ranger"; }
+          ];
+        };
         pi-zero = lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -88,6 +101,15 @@
           user = "root";
           path = deployPkgs.deploy-rs.lib.activate.nixos
             self.nixosConfigurations.pi-zero;
+        };
+      };
+      deploy.nodes.sdp = {
+        hostname = "sdp-ranger";
+        profiles.system = {
+          sshUser = "raspbius";
+          user = "root";
+          path = deployPkgs.deploy-rs.lib.activate.nixos
+            self.nixosConfigurations.sdp;
         };
       };
     };
