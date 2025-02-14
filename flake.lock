@@ -105,11 +105,11 @@
         "stellarkey-source": "stellarkey-source"
       },
       "locked": {
-        "lastModified": 1739196666,
-        "narHash": "sha256-OtNhfS+N7eV9f1XpoV2FANyTAb/ryEwUPMlnR5oZoAk=",
+        "lastModified": 1739513659,
+        "narHash": "sha256-85vdG9Vf3mkncWIaEZkSDV7e28XJC3yMQMkxzMAKXhM=",
         "owner": "ryndubei",
         "repo": "nixos-user",
-        "rev": "277a775e9a1a2e191651c8c0c4cb8a031521a48a",
+        "rev": "8c52826f5f60a2f31737a0700345b24976447110",
         "type": "github"
       },
       "original": {
@@ -120,11 +120,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1739055578,
-        "narHash": "sha256-2MhC2Bgd06uI1A0vkdNUyDYsMD0SLNGKtD8600mZ69A=",
+        "lastModified": 1739357830,
+        "narHash": "sha256-9xim3nJJUFbVbJCz48UP4fGRStVW5nv4VdbimbKxJ3I=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a45fa362d887f4d4a7157d95c28ca9ce2899b70e",
+        "rev": "0ff09db9d034a04acd4e8908820ba0b410d7a33a",
         "type": "github"
       },
       "original": {
