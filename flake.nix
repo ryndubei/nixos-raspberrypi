@@ -64,7 +64,14 @@
             ./encrypted/wifi_sdp.nix
             raspi-3
             hm
-            { networking.hostName = "sdp-ranger"; }
+            {
+              networking.hostName = "sdp-ranger";
+              # don't think inf would react well to tailscale, will have to just
+              # SSH through student.ssh.inf.ed.ac.uk -> sdp-ranger
+              services.tailscale.enable = lib.mkForce false;
+              users.users.raspbius.password = "group13";
+              console.enable = lib.mkForce true;
+            }
           ];
         };
         pi-zero = lib.nixosSystem {
@@ -114,7 +121,7 @@
         };
       };
       deploy.nodes.sdp = {
-        hostname = "sdp-ranger";
+        hostname = "192.168.193.174";
         profiles.system = {
           sshUser = "raspbius";
           user = "root";
