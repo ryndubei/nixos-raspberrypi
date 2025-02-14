@@ -45,6 +45,11 @@
           })
         ];
       };
+
+      git-cfg = {
+        programs.git.userName = "ryndubei";
+        programs.git.userEmail = "114586905+ryndubei@users.noreply.github.com";
+      };
     in {
       nixosConfigurations = {
         sdp = lib.nixosSystem {
@@ -67,6 +72,7 @@
             ./configuration.nix
             ./encrypted/wifi.nix
             hm
+            git-cfg
             { networking.hostName = "zero"; }
           ];
         };
@@ -79,6 +85,7 @@
             ./encrypted/wifi.nix
             raspi-4
             hm
+            git-cfg
             { networking.hostName = "raspberrypi"; }
           ];
         };
