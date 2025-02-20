@@ -86,6 +86,20 @@ in {
     };
   };
 
+  services.hostapd = {
+    # specified elsewhere
+    # enable = ...
+    countryCode = "GB";
+    radios.wlan0.networks.wlan0 = {
+      ssid = config.networking.hostName + "-ap";
+
+      authentication = {
+        mode = "wpa2-sha256";
+        # wpaPassword = ...
+      };
+    };
+  };
+
   # Enable Tailscale LAN-over-wireguard
   services.tailscale.enable = true;
   # Opt out of sending client logs to Tailscale
