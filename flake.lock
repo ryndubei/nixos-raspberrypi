@@ -105,11 +105,11 @@
         "stellarkey-source": "stellarkey-source"
       },
       "locked": {
-        "lastModified": 1739513659,
-        "narHash": "sha256-85vdG9Vf3mkncWIaEZkSDV7e28XJC3yMQMkxzMAKXhM=",
+        "lastModified": 1739548071,
+        "narHash": "sha256-UZqGstH5rzISSq4zPzBp5iaBn2Z2aMrghnSK5GXp/X8=",
         "owner": "ryndubei",
         "repo": "nixos-user",
-        "rev": "8c52826f5f60a2f31737a0700345b24976447110",
+        "rev": "6fc9c48a24d38525cd2b240f745220144baa3f8b",
         "type": "github"
       },
       "original": {
