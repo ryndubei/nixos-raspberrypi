@@ -83,7 +83,10 @@
             ./encrypted/wifi.nix
             hm
             git-cfg
-            { networking.hostName = "zero"; }
+            {
+              networking.hostName = "zero";
+              boot.kernelPackages = pkgs.linuxPackages_rpi02w;
+            }
           ];
         };
         raspberrypi = lib.nixosSystem {
