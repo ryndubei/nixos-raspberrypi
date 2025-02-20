@@ -89,13 +89,15 @@ in {
   services.hostapd = {
     # specified elsewhere
     # enable = ...
-    countryCode = "GB";
-    radios.wlan0.networks.wlan0 = {
-      ssid = config.networking.hostName + "-ap";
+    radios.wlan0 = {
+      countryCode = "GB";
+      networks.wlan0 = {
+        ssid = config.networking.hostName + "-ap";
 
-      authentication = {
-        mode = "wpa2-sha256";
-        # wpaPassword = ...
+        authentication = {
+          mode = "wpa2-sha256";
+          # wpaPassword = ...
+        };
       };
     };
   };
