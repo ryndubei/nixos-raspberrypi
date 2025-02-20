@@ -76,7 +76,7 @@
               # altenatively: connect over the advertised AP
               services.hostapd.enable = true;
               services.hostapd.radios.wlan0.networks.wlan0.authentication.wpaPassword =
-                "group13";
+                "group13_";
               users.users.raspbius.password = "group13";
               console.enable = lib.mkForce true;
             }
