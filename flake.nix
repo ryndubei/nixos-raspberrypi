@@ -20,10 +20,12 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fps.url = "github:wamserma/flake-programs-sqlite";
+    fps.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    { self, nixpkgs, nixos-hardware, home-manager, deploy-rs, ... }@inputs:
+    { self, nixpkgs, nixos-hardware, home-manager, deploy-rs, fps, ... }@inputs:
     let
       lib = nixpkgs.lib;
       raspi-4 = nixos-hardware.nixosModules.raspberry-pi-4;
@@ -44,11 +46,13 @@
           })
         ];
       };
+
+      programsdb = fps.packages.${system}.programs-sqlite;
     in {
       nixosConfigurations = {
         pi-zero = lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs programsdb; };
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix
@@ -60,7 +64,7 @@
         };
         raspberrypi = lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs programsdb; };
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix

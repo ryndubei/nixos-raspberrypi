@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, programsdb, ... }:
 
 let
   LAPTOP_SSH_PUBKEY =
@@ -81,6 +81,11 @@ in {
   services.tailscale.extraDaemonFlags = [ "--no-logs-no-support" ];
 
   programs.git.enable = true;
+
+  # Make command-not-found work with flakes
+  # https://blog.nobbz.dev/2023-02-27-nixos-flakes-command-not-found/
+  environment.etc."programs.sqlite".source = programsdb;
+  programs.command-not-found.dbPath = "/etc/programs.sqlite";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
