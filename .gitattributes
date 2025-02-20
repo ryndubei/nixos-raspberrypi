@@ -1,2 +1,1 @@
 encrypted/wifi.nix filter=git-crypt diff=git-crypt
-encrypted/wifi_sdp.nix filter=git-crypt-sdp diff=git-crypt-sdp

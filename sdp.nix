@@ -1,6 +1,8 @@
 { lib, ... }:
 
 {
+  networking.wireless.enable = true;
+
   # don't think inf would react well to tailscale, will have to just
   # SSH through student.ssh.inf.ed.ac.uk -> sdp-ranger
   services.tailscale.enable = lib.mkForce false;
