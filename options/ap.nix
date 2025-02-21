@@ -16,45 +16,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    networking.wlanInterfaces = {
-      wlan0-client = { device = "wlan0"; };
-      wlan0-ap = {
-        device = "wlan0";
-        mac = "72:bc:c4:28:7e:34";
-      };
-    };
-
-    networking.wireless.interfaces = [ "wlan0-client" ];
-
-    networking.interfaces.wlan0-ap.ipv4.addresses = [{
-      address = "192.168.0.1";
-      prefixLength = 24;
-    }];
-
-    services.hostapd = {
-      enable = true;
-      radios.wlan0-ap = {
-        countryCode = "GB";
-        networks.wlan0-ap = {
-          ssid = cfg.ssid;
-          authentication = {
-            mode = "wpa2-sha256";
-            wpaPassword = cfg.password;
-          };
-        };
-      };
-    };
-
-    services.dnsmasq = {
+    services.create_ap = {
       enable = true;
       settings = {
-        interface = "wlan0-ap";
-        bind-interfaces = true;
-        dhcp-range = [ "192.168.0.2,192.168.0.254,24h" ];
-        dhcp-authoritative = true;
+        INTERNET_IFACE = "wlan0";
+        PASSPHRASE = cfg.password;
+        SSID = cfg.ssid;
+        WIFI_IFACE = "wlan0";
       };
     };
-
-    networking.firewall.allowedUDPPorts = [ 67 ]; # DHCP
   };
 }

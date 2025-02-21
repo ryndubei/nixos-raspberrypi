@@ -68,7 +68,6 @@
             ./configuration.nix
             ./options/ap.nix
             ./sdp.nix
-            # TODO: pi 3 hostapd capabilities
             # ./hardware/pi3.nix
             raspi-3
             hm
@@ -95,7 +94,7 @@
             ./options/ap.nix
             ./configuration.nix
             ./encrypted/wifi.nix
-            ./hardware/pi4.nix
+            # ./hardware/pi4.nix
             raspi-4
             hm
             git-cfg
