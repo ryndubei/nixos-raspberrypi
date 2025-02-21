@@ -10,9 +10,8 @@
   services.tailscale.enable = lib.mkForce false;
 
   # altenatively: connect over the advertised AP
-  services.hostapd.enable = true;
-  services.hostapd.radios.wlan0-ap.networks.wlan0-ap.authentication.wpaPassword =
-    "group13_";
+  custom.ap.enable = true;
+  custom.ap.password = "group13_";
 
   # Enable password login over the terminal
   users.users.raspbius.password = "group13";
