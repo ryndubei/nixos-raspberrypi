@@ -18,7 +18,10 @@ in {
   config = lib.mkIf cfg.enable {
     networking.wlanInterfaces = {
       wlan0-client = { device = "wlan0"; };
-      wlan0-ap = { device = "wlan0"; };
+      wlan0-ap = {
+        device = "wlan0";
+        mac = "72:bc:c4:28:7e:34";
+      };
     };
 
     networking.wireless.interfaces = [ "wlan0-client" ];
