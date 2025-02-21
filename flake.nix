@@ -24,8 +24,8 @@
     fps.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    { self, nixpkgs, nixos-hardware, home-manager, deploy-rs, fps, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-hardware, nixos-user, home-manager, deploy-rs
+    , fps, ... }:
     let
       lib = nixpkgs.lib;
       raspi-4 = nixos-hardware.nixosModules.raspberry-pi-4;
@@ -48,11 +48,12 @@
       };
 
       programsdb = fps.packages.${system}.programs-sqlite;
+
+      specialArgs = { inherit nixos-user programsdb; };
     in {
       nixosConfigurations = {
         pi-zero = lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs programsdb; };
+          inherit system specialArgs;
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix
@@ -63,8 +64,7 @@
           ];
         };
         raspberrypi = lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs programsdb; };
+          inherit system specialArgs;
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix
