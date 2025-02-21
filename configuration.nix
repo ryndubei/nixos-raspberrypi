@@ -90,7 +90,6 @@ in {
     # specified elsewhere
     # enable = ...
     radios.wlan0 = {
-      channel = 7;
       countryCode = "GB";
       networks.wlan0 = {
         ssid = config.networking.hostName + "-ap";

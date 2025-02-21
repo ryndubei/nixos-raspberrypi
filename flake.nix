@@ -66,6 +66,8 @@
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix
             ./sdp.nix
+            # TODO: pi 3 hostapd capabilities
+            # ./hardware/pi3.nix
             raspi-3
             hm
             { networking.hostName = "sdp-ranger"; }
@@ -78,12 +80,10 @@
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix
             ./encrypted/wifi.nix
+            ./hardware/pi02w.nix
             hm
             git-cfg
-            {
-              networking.hostName = "zero";
-              boot.kernelPackages = pkgs.linuxPackages_rpi02w;
-            }
+            { networking.hostName = "zero"; }
           ];
         };
         raspberrypi = lib.nixosSystem {
@@ -93,6 +93,7 @@
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix
             ./encrypted/wifi.nix
+            ./hardware/pi4.nix
             raspi-4
             hm
             git-cfg
