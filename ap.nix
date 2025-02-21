@@ -15,7 +15,7 @@
 
   services.hostapd = {
     enable = true;
-    radios.wlan0 = {
+    radios.wlan0-ap = {
       countryCode = "GB";
       networks.wlan0-ap = {
         ssid = config.networking.hostName + "-ap";

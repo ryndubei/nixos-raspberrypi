@@ -11,7 +11,7 @@
 
   # altenatively: connect over the advertised AP
   services.hostapd.enable = true;
-  services.hostapd.radios.wlan0.networks.wlan0.authentication.wpaPassword =
+  services.hostapd.radios.wlan0-ap.networks.wlan0-ap.authentication.wpaPassword =
     "group13_";
 
   # Enable password login over the terminal
