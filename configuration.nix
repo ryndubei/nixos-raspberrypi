@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, programsdb, nixos-user, ... }:
+{ pkgs, programsdb, nixos-user, ... }:
 
 let
   LAPTOP_SSH_PUBKEY =
@@ -83,22 +83,6 @@ in {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
-    };
-  };
-
-  services.hostapd = {
-    # specified elsewhere
-    # enable = ...
-    radios.wlan0 = {
-      countryCode = "GB";
-      networks.wlan0 = {
-        ssid = config.networking.hostName + "-ap";
-
-        authentication = {
-          mode = "wpa2-sha256";
-          # wpaPassword = ...
-        };
-      };
     };
   };
 
