@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, inputs, programsdb, ... }:
+{ config, pkgs, programsdb, nixos-user, ... }:
 
 let
   LAPTOP_SSH_PUBKEY =
@@ -52,7 +52,7 @@ in {
     linger = true;
   };
   home-manager.users.raspbius = { ... }: {
-    imports = [ inputs.nixos-user.nixosModules.home ];
+    imports = [ nixos-user.nixosModules.home ];
 
     home.username = "raspbius";
     home.homeDirectory = "/home/raspbius";
