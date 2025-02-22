@@ -59,6 +59,7 @@
             ./configuration.nix
             ./encrypted/wifi.nix
             ./hardware/pi02w.nix
+            ./git.nix
             hm
             { networking.hostName = "zero"; }
           ];
@@ -70,6 +71,7 @@
             ./configuration.nix
             ./encrypted/wifi.nix
             ./hardware/pi4.nix
+            ./git.nix
             raspi-4
             hm
             { networking.hostName = "raspberrypi"; }
