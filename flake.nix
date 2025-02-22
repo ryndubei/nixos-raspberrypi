@@ -72,6 +72,7 @@
             ./encrypted/wifi.nix
             ./hardware/pi02w.nix
             ./git.nix
+            ./options/eduroam.nix
             hm
             { networking.hostName = "zero"; }
           ];
@@ -84,6 +85,7 @@
             ./encrypted/wifi.nix
             ./hardware/pi4.nix
             ./git.nix
+            ./options/eduroam.nix
             raspi-4
             hm
             { networking.hostName = "raspberrypi"; }
