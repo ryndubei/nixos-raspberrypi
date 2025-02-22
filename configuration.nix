@@ -12,16 +12,6 @@ let
   ANDROID_SSH_PUBKEY =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXOhbRu8rmIxXdDpXX4miEKJJ4kHM15gRk6FuVTGOXy u0_a180@localhost";
 in {
-  # See https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
-
-  #hardware = {
-  #  raspberry-pi."4".apply-overlays-dtmerge.enable = true;
-  #  deviceTree = {
-  #    enable = true;
-  #    filter = "*rpi-4-*.dtb";
-  #  };
-  #};
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Fix missing modules
@@ -60,11 +50,7 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    libraspberrypi
-    raspberrypi-eeprom
-    git-crypt
-  ];
+  environment.systemPackages = with pkgs; [ libraspberrypi git-crypt ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
