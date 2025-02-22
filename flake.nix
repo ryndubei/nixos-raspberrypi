@@ -66,10 +66,7 @@
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix
-            ./options/ap.nix
             ./sdp.nix
-            # TODO: pi 3 hostapd capabilities
-            # ./hardware/pi3.nix
             raspi-3
             hm
             { networking.hostName = "sdp-ranger"; }
@@ -79,7 +76,6 @@
           inherit system specialArgs;
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            ./options/ap.nix
             ./configuration.nix
             ./encrypted/wifi.nix
             ./hardware/pi02w.nix
@@ -92,7 +88,6 @@
           inherit system specialArgs;
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            ./options/ap.nix
             ./configuration.nix
             ./encrypted/wifi.nix
             ./hardware/pi4.nix
