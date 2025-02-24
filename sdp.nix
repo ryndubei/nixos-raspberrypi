@@ -2,10 +2,16 @@
 
 {
   networking.wireless.enable = true;
-  networking.wireless.userControlled.enable = true;
-  networking.wireless.allowAuxiliaryImperativeNetworks = true;
 
   networking.wireless.networks."SDProbots".psk = "robotsRus";
+
+  # SDProbots has no DHCP, must use static IP
+  networking.interfaces.wlan0.useDHCP = false;
+  networking.interfaces.wlan0.ipv4.addresses = [{
+    address = "192.168.105.169";
+    prefixLength = 24;
+  }];
+  networking.defaultGateway = "192.168.105.243";
 
   # don't think inf would react well to tailscale, will have to just
   # SSH through student.ssh.inf.ed.ac.uk -> sdp-ranger
