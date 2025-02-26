@@ -9,6 +9,7 @@ let
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = ssh-keys;
       password = "group13";
+      linger = true;
     };
     home-manager.users.${name} = { ... }: {
       home.username = name;
