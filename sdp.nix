@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 let
-  ssh-keys = config.users.raspbius.openssh.authorizedKeys.keys;
+  ssh-keys = config.users.users.raspbius.openssh.authorizedKeys.keys;
 
   adminUser = name: {
     users.users.${name} = {
@@ -14,11 +14,11 @@ let
     home-manager.users.${name} = { ... }: {
       home.username = name;
       home.homeDirectory = "/home/${name}";
+      home.stateVersion = "24.05";
     };
   };
 
-  adminUsers = names: builtins.foldl' (n: acc: acc // (adminUser n));
-
+  adminUsers = names: builtins.foldl' (acc: n: acc // (adminUser n)) { } names;
 in {
   networking.wireless.enable = true;
 
@@ -27,7 +27,7 @@ in {
   # syncthing will use ~6% of RAM otherwise
   home-manager.users.raspbius.services.syncthing.enable = lib.mkForce false;
 
-  virtualisaton.containers.enable = true;
+  virtualisation.containers.enable = true;
 
   virtualisation.podman = {
     enable = true;
