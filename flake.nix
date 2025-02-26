@@ -49,12 +49,17 @@
       };
 
       programsdb = fps.packages.${system}.programs-sqlite;
+      base-home = nixos-user.nixosModules.home;
 
-      specialArgs = { inherit nixos-user programsdb; };
+      specialArgs = { inherit base-home programsdb; };
     in {
       nixosConfigurations = {
         sdp = lib.nixosSystem {
-          inherit system specialArgs;
+          inherit system;
+          specialArgs = {
+            inherit programsdb;
+            base-home = nixos-user.nixosModules.cli;
+          };
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix

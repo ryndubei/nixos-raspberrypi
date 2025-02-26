@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, programsdb, nixos-user, ... }:
+{ pkgs, programsdb, base-home, ... }:
 
 let
   LAPTOP_SSH_PUBKEY =
@@ -42,10 +42,11 @@ in {
     linger = true;
   };
   home-manager.users.raspbius = { ... }: {
-    imports = [ nixos-user.nixosModules.home ];
+    imports = [ base-home ];
 
     home.username = "raspbius";
     home.homeDirectory = "/home/raspbius";
+    home.stateVersion = "24.05";
   };
 
   # List packages installed in system profile. To search, run:
