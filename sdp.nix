@@ -9,8 +9,8 @@ let
   rosImage = pkgs.dockerTools.pullImage {
     imageName = "ros";
     imageDigest =
-      "sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2";
-    sha256 = "1bc8s1j9311qwg748s2qjjmr5f8yz14j5hhf63azc2l7kswmfq98";
+      "sha256:80dfc9ff2ada919636ef0038dbb65a8b24ef89ac4cd8126bf59271f743033966";
+    sha256 = "0sy8vvghnd8h075fsbj0mkpszdb7rwy5y67nql2r2llmszaycd1c";
     finalImageName = "ros";
     finalImageTag = "humble-perception";
     arch = "arm64";
