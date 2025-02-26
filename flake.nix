@@ -22,10 +22,11 @@
     };
     fps.url = "github:wamserma/flake-programs-sqlite";
     fps.inputs.nixpkgs.follows = "nixpkgs";
+    ranger.url = "github:shleem0/ranger_object_finder";
   };
 
   outputs = { self, nixpkgs, nixos-hardware, nixos-user, home-manager, deploy-rs
-    , fps, ... }:
+    , fps, ranger, ... }:
     let
       lib = nixpkgs.lib;
       raspi-4 = nixos-hardware.nixosModules.raspberry-pi-4;
@@ -52,21 +53,27 @@
       base-home = nixos-user.nixosModules.home;
 
       specialArgs = { inherit base-home programsdb; };
+      specialArgsSdp = {
+        inherit programsdb;
+        base-home = nixos-user.nixosModules.cli;
+      };
     in {
       nixosConfigurations = {
         sdp = lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit programsdb;
-            base-home = nixos-user.nixosModules.cli;
-          };
+          specialArgs = specialArgsSdp;
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
             ./configuration.nix
             ./sdp.nix
             raspi-3
             hm
-            { networking.hostName = "sdp-ranger"; }
+            {
+              networking.hostName = "sdp-ranger";
+              # TODO: replace with default package
+              environment.systemPackages =
+                [ ranger.packages.${system}."ranger-daemon:exe:ranger-daemon" ];
+            }
           ];
         };
         pi-zero = lib.nixosSystem {
@@ -127,4 +134,9 @@
         };
       };
     };
+  nixConfig.extra-substituters = [
+    "https://cache.iog.io"
+    "https://cache.zw3rk.com"
+    "https://ros.cachix.org"
+  ];
 }

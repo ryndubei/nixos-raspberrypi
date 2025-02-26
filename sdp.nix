@@ -3,19 +3,6 @@
 let
   ssh-keys = config.users.users.raspbius.openssh.authorizedKeys.keys;
 
-  # note:
-  # https://discourse.nixos.org/t/running-nix-os-containers-directly-from-the-store-with-podman/29220
-  # podman run -ti --rm -v /nix/store:/nix/store --rootfs ./result:O /bin/hello
-  rosImage = pkgs.dockerTools.pullImage {
-    imageName = "ros";
-    imageDigest =
-      "sha256:80dfc9ff2ada919636ef0038dbb65a8b24ef89ac4cd8126bf59271f743033966";
-    sha256 = "0sy8vvghnd8h075fsbj0mkpszdb7rwy5y67nql2r2llmszaycd1c";
-    finalImageName = "ros";
-    finalImageTag = "humble-perception";
-    arch = "arm64";
-  };
-
   adminUser = name: {
     users.users.${name} = {
       isNormalUser = true;
@@ -47,14 +34,7 @@ in {
     dockerCompat = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    distrobox
-    podman-tui
-    (writeShellScriptBin "enter-ros-shell" ''
-      set -euxo pipefail
-      ${podman}/bin/podman run -ti --rm -v /nix/store:/nix/store -v "$HOME":"/home/$USER" --user "$USER" --rootfs ${rosImage}:O ${bash}/bin/bash
-    '')
-  ];
+  environment.systemPackages = with pkgs; [ distrobox podman-tui ];
 
   # Enable password login over the terminal
   users.users.raspbius.password = "group13";
