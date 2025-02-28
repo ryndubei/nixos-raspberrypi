@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, programsdb, base-home, ... }:
+{ pkgs, lib, programsdb, base-home, ... }:
 
 let
   LAPTOP_SSH_PUBKEY =
@@ -22,6 +22,9 @@ in {
         super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
+
+  # Disable ZFS (no cache on https://hydra.nixos.org so takes ages to compile)
+  boot.supportedFilesystems.zfs = lib.mkForce false;
 
   # Set your time zone.
   time.timeZone = "Europe/London";
