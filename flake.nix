@@ -22,15 +22,13 @@
     };
     fps.url = "github:wamserma/flake-programs-sqlite";
     fps.inputs.nixpkgs.follows = "nixpkgs";
-    ranger.url = "github:shleem0/ranger_object_finder";
   };
 
   outputs = { self, nixpkgs, nixos-hardware, nixos-user, home-manager, deploy-rs
-    , fps, ranger, ... }:
+    , fps, ... }:
     let
       lib = nixpkgs.lib;
       raspi-4 = nixos-hardware.nixosModules.raspberry-pi-4;
-      raspi-3 = nixos-hardware.nixosModules.raspberry-pi-3;
       hm = home-manager.nixosModules.home-manager;
       system = "aarch64-linux";
 
@@ -53,29 +51,8 @@
       base-home = nixos-user.nixosModules.home;
 
       specialArgs = { inherit base-home programsdb; };
-      specialArgsSdp = {
-        inherit programsdb;
-        base-home = nixos-user.nixosModules.cli;
-      };
     in {
       nixosConfigurations = {
-        sdp = lib.nixosSystem {
-          inherit system;
-          specialArgs = specialArgsSdp;
-          modules = [
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            ./configuration.nix
-            ./sdp.nix
-            raspi-3
-            hm
-            {
-              networking.hostName = "sdp-ranger";
-              # TODO: replace with default package
-              environment.systemPackages =
-                [ ranger.packages.${system}."ranger-daemon:exe:ranger-daemon" ];
-            }
-          ];
-        };
         pi-zero = lib.nixosSystem {
           inherit system specialArgs;
           modules = [
@@ -124,19 +101,5 @@
             self.nixosConfigurations.pi-zero;
         };
       };
-      deploy.nodes.sdp = {
-        hostname = "sdp-ranger"; # TODO: find appropriate ssh alias definition
-        profiles.system = {
-          sshUser = "raspbius";
-          user = "root";
-          path = deployPkgs.deploy-rs.lib.activate.nixos
-            self.nixosConfigurations.sdp;
-        };
-      };
     };
-  nixConfig.extra-substituters = [
-    "https://cache.iog.io"
-    "https://cache.zw3rk.com"
-    "https://ros.cachix.org"
-  ];
 }
